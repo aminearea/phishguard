@@ -1,110 +1,93 @@
+<div align="center">
+
 # 🛡️ PhishGuard
 
-Real-time phishing detection for Chrome and Brave.
+**Real-time phishing detection for Chrome and Brave**
+
+[![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
+[![Manifest V3](https://img.shields.io/badge/manifest-v3-blue.svg)](https://developer.chrome.com/docs/extensions/mv3/)
+[![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?logo=php&logoColor=white)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?logo=mysql&logoColor=white)](https://mysql.com)
+
+Analyzes every URL you visit, scores it 0–100, and warns you before you enter data on a phishing page.
+
+</div>
 
 ---
 
-## What it does
+## 📸 Screenshots
 
-PhishGuard analyzes every URL you visit and assigns a **risk score (0–100)** using 11 detection rules. Results are stored in MySQL and visualized in an admin dashboard.
-
-| Level | Score | Meaning |
-|---|---|---|
-| 🟢 Low | 0–29 | Safe |
-| 🟠 Medium | 30–69 | Suspicious |
-| 🔴 High | 70–100 | Phishing |
-
----
-
-## Features
-
-### Extension
-- ⚡ Real-time analysis on every tab load
-- 🎯 11 detection rules with weighted scoring
-- 🎨 Per-tab colored badge (green ✓ / orange ! / red ⚠)
-- 🔔 Desktop notification on high-risk sites
-- ✅ Trust Site (custom user whitelist)
-
-### Backend
-- 🔌 PHP REST API (no framework)
-- 🛡️ PDO prepared statements
-- 🔒 Bcrypt password hashing
-
-### Dashboard
-- 📊 Interactive charts (line + doughnut)
-- 🔍 Live search + level filters
-- 📥 Export CSV
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/screenshots/safe.png" width="280"/><br/>
+      <b>🟢 Safe site</b><br/>
+      <sub>Whitelisted — score 0</sub>
+    </td>
+    <td align="center">
+      <img src="docs/screenshots/phishing.png" width="280"/><br/>
+      <b>🔴 Phishing detected</b><br/>
+      <sub>Score 100 — 5 rules triggered</sub>
+    </td>
+    <td align="center">
+      <img src="docs/screenshots/dashboard.png" width="420"/><br/>
+      <b>📊 Admin dashboard</b><br/>
+      <sub>Charts, filters, CSV export</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## Stack
+## ✨ Features
 
-- **Extension:** JavaScript (Manifest V3)
-- **Backend:** PHP 8
-- **Database:** MySQL
-- **Environment:** XAMPP
-- **Charts:** Chart.js
+- ⚡ **Real-time** URL analysis on every tab
+- 🎯 **11 detection rules** with weighted scoring
+- 🎨 **Per-tab colored badge** (✓ / ! / ⚠)
+- 🔔 **Desktop notifications** on high-risk sites
+- ✅ **Trust Site** button (custom whitelist)
+- 📊 **Admin dashboard** with charts + CSV export
 
 ---
 
-## Setup
+## 🏗️ Architecture
 
-### Prerequisites
-- XAMPP (Apache + MySQL + PHP 8+)
-- Chrome or Brave
+```
+┌─────────────┐      ┌────────────┐      ┌─────────┐      ┌────────────┐
+│  Extension  │─────▶│  PHP API   │─────▶│  MySQL  │◀─────│ Dashboard  │
+│  (Manifest  │      │ (4 routes) │      │ (2 tbl) │      │  (Chart.js)│
+│      V3)    │      └────────────┘      └─────────┘      └────────────┘
+└─────────────┘
+```
 
-### 1. Clone
+---
+
+## 🚀 Quick Start
 
 ```bash
+# 1. Clone into XAMPP
 cd C:\xampp\htdocs
 git clone https://github.com/aminearea/phishguard.git
+
+# 2. Import database/phishguard.sql in phpMyAdmin
+
+# 3. Copy backend/config.example.php → backend/config.php
+
+# 4. Load extension/ folder in brave://extensions
+
+# 5. Open http://localhost/phishguard/dashboard/
+#    Login: admin / admin123
 ```
-
-### 2. Database
-
-- Open **phpMyAdmin**: http://localhost/phpmyadmin
-- Import `database/phishguard.sql`
-
-### 3. Config
-
-- Copy `backend/config.example.php` to `backend/config.php`
-- Edit if your MySQL credentials differ (default: `root` / empty)
-
-### 4. Admin password
-
-Generate a bcrypt hash for your desired password:
-
-```bash
-php -r "echo password_hash('admin123', PASSWORD_DEFAULT);"
-```
-
-Then in phpMyAdmin, go to database `phishguard`, table `admins`, and run:
-
-```sql
-UPDATE admins SET password = '<paste-hash-here>' WHERE username = 'admin';
-```
-
-### 5. Extension
-
-1. Open `brave://extensions`
-2. Enable **Developer mode**
-3. Click **Load unpacked**
-4. Select the `extension/` folder
-
-### 6. Dashboard
-
-- URL: http://localhost/phishguard/dashboard/
-- Login: `admin` / `admin123`
 
 ---
 
-## Detection rules
+## 🧠 Detection Rules
 
 | # | Rule | Weight |
-|---|---|---|
+|:-:|------|:------:|
 | 1 | No HTTPS | +30 |
-| 2 | Uses raw IP address | +30 |
-| 3 | Suspicious keyword in URL | +20 |
+| 2 | Raw IP address | +30 |
+| 3 | Suspicious keyword | +20 |
 | 4 | Contains `@` in URL | +20 |
 | 5 | Punycode hostname | +25 |
 | 6 | Tunneling service (Cloudflare/Ngrok) | +40 |
@@ -114,25 +97,25 @@ UPDATE admins SET password = '<paste-hash-here>' WHERE username = 'admin';
 | 10 | Very long URL | +10 |
 | 11 | HTML file in path | +10 |
 
-Score is capped at 100. Whitelisted domains always return **0**.
+Score is capped at 100 · Whitelisted domains always return **0**.
 
 ---
 
-## API endpoints
+## 🔌 API Endpoints
 
 | Method | Endpoint | Purpose |
-|---|---|---|
+|:------:|----------|---------|
 | `POST` | `/backend/scan.php` | Save a scan |
-| `GET` | `/backend/scans.php` | List scans |
-| `GET` | `/backend/stats.php` | Statistics |
+| `GET`  | `/backend/scans.php` | List scans |
+| `GET`  | `/backend/stats.php` | Statistics |
 | `POST` | `/backend/login.php` | Admin login |
 
 ---
 
-## Test URLs
+## 🧪 Test URLs
 
 | URL | Result |
-|---|---|
+|-----|:------:|
 | `https://google.com` | 🟢 0 |
 | `http://neverssl.com` | 🟠 30 |
 | `http://192.168.1.1/login.htm` | 🔴 100 |
@@ -140,34 +123,12 @@ Score is capped at 100. Whitelisted domains always return **0**.
 
 ---
 
-## Architecture
-
-```
-Extension (JS)  →  PHP API  →  MySQL  →  Dashboard (PHP + Chart.js)
-```
-
----
-
-## Project structure
-
-```
-phishguard/
-├── backend/          PHP REST API
-├── dashboard/        Admin panel
-├── database/         SQL schema
-├── extension/        Chrome/Brave extension
-├── LICENSE
-└── README.md
-```
-
----
-
-## License
+## 📄 License
 
 MIT — see [LICENSE](LICENSE).
 
 ---
 
-## Author
-
-**Amine** — 3rd year EMI student
+<div align="center">
+<sub>Built by <b>Amine</b> · 3rd year EMI student</sub>
+</div>
