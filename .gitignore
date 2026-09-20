@@ -1,0 +1,54 @@
+# ================================
+# PhishGuard - .gitignore
+# ================================
+
+# ---- Sensitive config files ----
+# Never commit DB credentials
+**/config.php
+
+# ---- Debug / local only files ----
+debug-*.php
+hash.php
+reset-admin.php
+*-debug.php
+test-*.php
+
+# ---- Database dumps ----
+database/*.dump
+database/*.backup.sql
+*.sql.gz
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ---- IDE / Editors ----
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ---- Node (if you ever add tooling) ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- Backup files ----
+*.bak
+*.orig
+*.tmp
+
+# ---- Local report drafts ----
+docs/report/*.pdf
+docs/report/*.docx
+docs/report/*.doc

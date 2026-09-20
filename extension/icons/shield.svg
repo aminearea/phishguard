@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" shape-rendering="geometricPrecision">
+  <!-- Outer shield border -->
+  <path fill=" #003106" d="M 64 12 C 46 20, 26 24, 16 26 V 60 C 16 88, 40 110, 64 118 C 88 110, 112 88, 112 60 V 26 C 102 24, 82 20, 64 12 Z"/>
+  
+  <!-- Inner white gap -->
+  <path fill="#ffffff" d="M 64 22 C 50 28, 34 32, 24 34 V 60 C 24 82, 43 102, 64 108 C 85 102, 104 82, 104 60 V 34 C 94 32, 78 28, 64 22 Z"/>
+  
+  <!-- Inner solid shield body -->
+  <path fill="#0d4e22" d="M 64 28 C 54 32, 42 36, 32 38 V 60 C 32 78, 48 94, 64 100 C 80 94, 96 78, 96 60 V 38 C 86 36, 74 32, 64 28 Z"/>
+  
+  <!-- Sharp checkmark -->
+  <path fill="#ffffff" d="M 44 60 L 58 78 L 88 46 L 82 40 L 58 66 L 50 58 Z"/>
+</svg>   

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <div class="logo">🛡️</div>
+      <div>
+        <div class="title">PhishGuard</div>
+        <div class="subtitle">URL Analyzer</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="btn-rescan" class="icon-btn" title="Re-scan">↻</button>
+    </div>
+  </header>
+
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Analyzing...</p>
+  </div>
+
+  <div id="content" style="display:none;">
+    <!-- URL card -->
+    <div class="url-card">
+      <div class="domain" id="domain">—</div>
+      <div class="full-url" id="full-url">—</div>
+    </div>
+
+    <!-- Score card -->
+    <div class="score-card" id="score-card">
+      <div class="score" id="score">0</div>
+      <div class="level-badge" id="level-badge">LOW RISK</div>
+      <div class="meter">
+        <div class="meter-fill" id="meter-fill"></div>
+      </div>
+    </div>
+
+    <!-- Quick chips -->
+    <div class="chips" id="chips"></div>
+
+    <!-- Reasons -->
+    <div class="section">
+      <div class="section-title">
+        <span>Detection Reasons</span>
+        <span class="count" id="reasons-count">0</span>
+      </div>
+      <ul class="reasons-list" id="reasons-list"></ul>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-row">
+      <button class="action-btn" id="btn-copy">
+        <span>📋</span> Copy URL
+      </button>
+      <button class="action-btn" id="btn-trust">
+        <span>✓</span> Trust Site
+      </button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span id="footer-status">—</span>
+    <a href="http://localhost/phishguard/dashboard/" target="_blank">Dashboard →</a>
+  </footer>
+
+  <audio id="alert-sound" preload="auto">
+    <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+  </audio>
+
+  <script src="rules.js"></script>
+  <script src="analyzer.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
