@@ -55,7 +55,7 @@ $lowPct    = round((int)$stats['low']    / $total * 100);
     <!-- Topbar -->
     <header class="topbar">
       <div class="brand">
-        <div class="logo">🛡️</div>
+        <div class="logo"><img src="../extension/icons/icon128.png" alt="PhishGuard" /></div>
         <div>
           <h1>PhishGuard</h1>
           <p class="subtitle">Security Overview</p>

@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <div class="login-wrap">
     <form class="login-card" method="POST">
-      <h1>🛡️ PhishGuard</h1>
+      <h1><img src="../extension/icons/icon128.png" alt="" class="login-logo" /> PhishGuard</h1>
       <p>Admin dashboard login</p>
 
       <?php if ($error): ?>
