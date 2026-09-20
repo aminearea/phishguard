@@ -14,7 +14,6 @@ Analyzes every URL you visit, scores it 0–100, and warns you **before** you en
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/mv3/)
 [![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
-[![Made in Morocco](https://img.shields.io/badge/Made%20in-Morocco-red?style=for-the-badge)](https://github.com/aminearea)
 
 <br/>
 
@@ -335,27 +334,27 @@ phishguard/
 <table>
 <tr>
 <td align="center" width="96">
-<img src="https://cdn.simpleicons.org/javascript/F7DF1E" width="48" height="48" alt="JavaScript" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="48" height="48" alt="JavaScript" />
 <br><b>JavaScript</b>
 </td>
 <td align="center" width="96">
-<img src="https://cdn.simpleicons.org/php/777BB4" width="48" height="48" alt="PHP" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" width="48" height="48" alt="PHP" />
 <br><b>PHP 8</b>
 </td>
 <td align="center" width="96">
-<img src="https://cdn.simpleicons.org/mysql/4479A1" width="48" height="48" alt="MySQL" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="48" height="48" alt="MySQL" />
 <br><b>MySQL</b>
 </td>
 <td align="center" width="96">
-<img src="https://cdn.simpleicons.org/html5/E34F26" width="48" height="48" alt="HTML5" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="48" height="48" alt="HTML5" />
 <br><b>HTML5</b>
 </td>
 <td align="center" width="96">
-<img src="https://cdn.simpleicons.org/css3/1572B6" width="48" height="48" alt="CSS3" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="48" height="48" alt="CSS3" />
 <br><b>CSS3</b>
 </td>
 <td align="center" width="96">
-<img src="https://cdn.simpleicons.org/googlechrome/4285F4" width="48" height="48" alt="Chrome Extension" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" width="48" height="48" alt="Chrome Extension" />
 <br><b>Manifest V3</b>
 </td>
 </tr>
@@ -380,7 +379,5 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fo
 ### ⭐ If you find this project useful, please give it a star!
 
 **Built with 🛡️ by [@aminearea](https://github.com/aminearea)**
-
-<sub>3rd year Cyber Security Student · EMI · Morocco 🇲🇦</sub>
 
 </div>
