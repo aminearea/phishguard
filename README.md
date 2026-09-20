@@ -17,7 +17,7 @@ Analyzes every URL you visit, scores it 0–100, and warns you before you enter 
 
 <br/>
 
-[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [Architecture](#architecture) · [Detection Rules](#detection-rules) · [API](#api-endpoints)
+[Features](#features) · [Screenshots](#screenshots) · [How to Use](#how-to-use) · [Architecture](#architecture) · [Detection Rules](#detection-rules) · [API](#api-endpoints)
 
 </div>
 
@@ -89,62 +89,92 @@ Unlike simple blacklist-based tools, PhishGuard detects emerging phishing patter
 
 ---
 
-## Installation
+## How to Use
 
-### Prerequisites
+### 1. Install the Extension
 
-- XAMPP (Apache + MySQL + PHP 8+)
-- Chrome or Brave browser
-- Git (optional)
+1. **Clone or download** this repository to your local machine:
+   ```bash
+   git clone https://github.com/aminearea/phishguard.git
+   ```
 
-### 1. Clone
+2. Open **Chrome** or **Brave** and navigate to:
+   ```
+   chrome://extensions/
+   ```
+   *For Brave:* `brave://extensions/`
 
-```bash
-cd C:\xampp\htdocs
-git clone https://github.com/aminearea/phishguard.git
-cd phishguard
-```
+3. Enable **Developer mode** — toggle in the top-right corner.
 
-### 2. Import database
+4. Click **Load unpacked**.
 
-- Open phpMyAdmin → http://localhost/phpmyadmin
-- Click **Import** → select `database/phishguard.sql` → **Go**
+5. Select the **`extension/`** folder inside the project directory:
+   ```
+   phishguard/extension/
+   ```
 
-### 3. Configure backend
+6. The PhishGuard icon appears in your toolbar. **Pin it** for quick access.
 
-```bash
-cd backend
-copy config.example.php config.php
-```
+**No configuration needed.** It runs in the background and analyzes every page you visit.
 
-Edit `config.php` if your MySQL credentials differ (default: `root` / empty password).
+---
 
-### 4. Set admin password
+### 2. Set Up the Backend (Optional — for the dashboard)
 
-Generate a fresh bcrypt hash:
+If you only want the detection feature, **skip this step**. The extension works standalone.
 
-```bash
-php -r "echo password_hash('admin123', PASSWORD_DEFAULT);"
-```
+To also use the admin dashboard:
 
-Then in phpMyAdmin → database `phishguard` → table `admins`:
+1. **Install XAMPP** and start **Apache** + **MySQL**.
 
-```sql
-UPDATE admins SET password = '<paste-hash-here>' WHERE username = 'admin';
-```
+2. **Move the project** into the XAMPP web directory:
+   ```
+   C:\xampp\htdocs\phishguard\
+   ```
 
-### 5. Load the extension
+3. **Import the database:**
+   - Open http://localhost/phpmyadmin
+   - Click **Import** → select `database/phishguard.sql` → **Go**
 
-1. Open `brave://extensions` (or `chrome://extensions`)
-2. Enable **Developer mode** (top right)
-3. Click **Load unpacked**
-4. Select the `extension/` folder
+4. **Configure the backend:**
+   ```bash
+   cd backend
+   copy config.example.php config.php
+   ```
+   Edit `config.php` if your MySQL credentials differ (default: `root` / empty password).
 
-### 6. Open the dashboard
+5. **Set the admin password:**
+   Generate a bcrypt hash:
+   ```bash
+   php -r "echo password_hash('admin123', PASSWORD_DEFAULT);"
+   ```
+   Then in phpMyAdmin → database `phishguard` → table `admins`:
+   ```sql
+   UPDATE admins SET password = '<paste-hash-here>' WHERE username = 'admin';
+   ```
 
-- **URL:** http://localhost/phishguard/dashboard/
-- **Username:** `admin`
-- **Password:** `admin123`
+6. **Access the dashboard:**
+   - URL: http://localhost/phishguard/dashboard/
+   - Username: `admin`
+   - Password: `admin123`
+
+---
+
+### 3. Using the Extension
+
+Once installed, PhishGuard works automatically:
+
+1. **Browse any website** — the extension analyzes the URL instantly.
+2. **Look at the icon** in the toolbar:
+   - **Green check** — safe
+   - **Orange !** — suspicious
+   - **Red warning** — phishing detected
+3. **Click the icon** to see:
+   - Full risk score (0–100)
+   - Detection reasons
+   - Options to copy the URL or trust the site
+
+When a high-risk site is detected, PhishGuard sends a **desktop notification** and plays an **audio alert**.
 
 ---
 
