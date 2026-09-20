@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="extension/icons/icon128.png" alt="PhishGuard Logo" width="120" />
+<img src="extension/icons/icon128.png" alt="PhishGuard" width="120" />
 
 # PhishGuard
 
 **Real-time phishing detection for Chrome and Brave.**
 
-Analyzes every URL you visit, scores it 0–100, and warns you **before** you enter data on a phishing page.
+Analyzes every URL you visit, scores it 0–100, and warns you before you enter data on a phishing page.
 
 <br/>
 
@@ -17,57 +17,43 @@ Analyzes every URL you visit, scores it 0–100, and warns you **before** you en
 
 <br/>
 
-[**Features**](#-features) · [**Screenshots**](#-screenshots) · [**Installation**](#-installation) · [**Architecture**](#-architecture) · [**Detection Rules**](#-detection-rules) · [**API**](#-api-endpoints)
+[Features](#features) · [Screenshots](#screenshots) · [Installation](#installation) · [Architecture](#architecture) · [Detection Rules](#detection-rules) · [API](#api-endpoints)
 
 </div>
 
 ---
 
-## 📌 Overview
+## Overview
 
-**PhishGuard** is a browser extension that protects users from phishing attacks by analyzing URLs in **real time**. Every page you visit is evaluated against **11 security rules** and given a risk score from **0 (safe)** to **100 (phishing)**.
+PhishGuard is a browser extension that protects users from phishing attacks by analyzing URLs in real time. Every page you visit is evaluated against 11 security rules and given a risk score from 0 (safe) to 100 (phishing).
 
-Unlike simple blacklist-based tools, PhishGuard detects **emerging phishing patterns** like Cloudflare tunnels, IP-based pages, and punycode domains — even when the site hasn't been reported yet.
+Unlike simple blacklist-based tools, PhishGuard detects emerging phishing patterns like Cloudflare tunnels, IP-based pages, and punycode domains — even when the site hasn't been reported yet.
 
-<table>
-<tr>
-<td width="33%" align="center">
-<h3>🟢 Low</h3>
-<b>Score 0–29</b><br/>
-<sub>Safe to browse</sub>
-</td>
-<td width="33%" align="center">
-<h3>🟠 Medium</h3>
-<b>Score 30–69</b><br/>
-<sub>Proceed with caution</sub>
-</td>
-<td width="33%" align="center">
-<h3>🔴 High</h3>
-<b>Score 70–100</b><br/>
-<sub>Do not enter data</sub>
-</td>
-</tr>
-</table>
+| Level | Score | Meaning |
+|:-----:|:-----:|---------|
+| Low | 0–29 | Safe to browse |
+| Medium | 30–69 | Proceed with caution |
+| High | 70–100 | Do not enter data |
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 <table>
 <tr>
 <td align="center" width="33%">
 <img src="docs/screenshots/safe.png" alt="Safe site" /><br/>
-<b>🟢 Safe Site</b><br/>
+<b>Safe site</b><br/>
 <sub>Whitelisted domain — score 0</sub>
 </td>
 <td align="center" width="33%">
 <img src="docs/screenshots/phishing.png" alt="Phishing detected" /><br/>
-<b>🔴 Phishing Detected</b><br/>
+<b>Phishing detected</b><br/>
 <sub>Score 100 — 5 rules triggered</sub>
 </td>
 <td align="center" width="33%">
 <img src="docs/screenshots/dashboard.png" alt="Dashboard" /><br/>
-<b>📊 Admin Dashboard</b><br/>
+<b>Admin dashboard</b><br/>
 <sub>Charts, filters, CSV export</sub>
 </td>
 </tr>
@@ -75,54 +61,43 @@ Unlike simple blacklist-based tools, PhishGuard detects **emerging phishing patt
 
 ---
 
-## ✨ Features
+## Features
 
-<table>
-<tr>
-<td width="50%" valign="top">
+### Extension
+- Real-time analysis on every tab load
+- 11 detection rules with weighted scoring
+- Per-tab colored badge (green / orange / red)
+- Desktop notifications on high-risk sites
+- Audio alert for confirmed threats
+- Trust Site — custom user whitelist
+- Copy URL / JSON for sharing
+- 45+ trusted domains built in
 
-### 🧩 Extension
-- ⚡ **Real-time analysis** on every tab load
-- 🎯 **11 detection rules** with weighted scoring
-- 🎨 **Per-tab colored badge** (✓ / ! / ⚠)
-- 🔔 **Desktop notifications** on high-risk sites
-- 🔊 **Audio alert** for confirmed threats
-- ✅ **Trust Site** — custom user whitelist
-- 📋 **Copy URL / JSON** for sharing
-- 🌐 **45+ trusted domains** built in
+### Backend
+- PHP REST API (no framework)
+- PDO prepared statements
+- Bcrypt password hashing
+- Input validation with `filter_var`
+- CORS headers for extension
 
-</td>
-<td width="50%" valign="top">
-
-### ⚙️ Backend
-- 🔌 **PHP REST API** (no framework)
-- 🛡️ **PDO prepared statements**
-- 🔒 **Bcrypt password hashing**
-- ✅ **Input validation** with `filter_var`
-- 🌍 **CORS** headers for extension
-
-### 📊 Dashboard
-- 📈 **Interactive charts** (line + doughnut)
-- 🔍 **Live search** + level filters
-- 📥 **Export CSV** for reports
-- 📄 **Pagination** (50 per page)
-- 🎨 **Dark theme** with yellow accent
-
-</td>
-</tr>
-</table>
+### Dashboard
+- Interactive charts (line + doughnut)
+- Live search + level filters
+- Export CSV for reports
+- Pagination (50 per page)
+- Dark theme with yellow accent
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 
-![XAMPP](https://img.shields.io/badge/XAMPP-Required-FB7A24?style=flat-square)
-![Chrome](https://img.shields.io/badge/Chrome%2FBrave-Required-4285F4?style=flat-square&logo=googlechrome&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=flat-square&logo=php&logoColor=white)
+- XAMPP (Apache + MySQL + PHP 8+)
+- Chrome or Brave browser
+- Git (optional)
 
-### 1️⃣ Clone
+### 1. Clone
 
 ```bash
 cd C:\xampp\htdocs
@@ -130,12 +105,12 @@ git clone https://github.com/aminearea/phishguard.git
 cd phishguard
 ```
 
-### 2️⃣ Import database
+### 2. Import database
 
-- Open **phpMyAdmin** → http://localhost/phpmyadmin
+- Open phpMyAdmin → http://localhost/phpmyadmin
 - Click **Import** → select `database/phishguard.sql` → **Go**
 
-### 3️⃣ Configure backend
+### 3. Configure backend
 
 ```bash
 cd backend
@@ -144,7 +119,7 @@ copy config.example.php config.php
 
 Edit `config.php` if your MySQL credentials differ (default: `root` / empty password).
 
-### 4️⃣ Set admin password
+### 4. Set admin password
 
 Generate a fresh bcrypt hash:
 
@@ -158,24 +133,22 @@ Then in phpMyAdmin → database `phishguard` → table `admins`:
 UPDATE admins SET password = '<paste-hash-here>' WHERE username = 'admin';
 ```
 
-### 5️⃣ Load the extension
+### 5. Load the extension
 
 1. Open `brave://extensions` (or `chrome://extensions`)
 2. Enable **Developer mode** (top right)
 3. Click **Load unpacked**
 4. Select the `extension/` folder
 
-### 6️⃣ Open the dashboard
+### 6. Open the dashboard
 
-| Field | Value |
-|---|---|
-| **URL** | http://localhost/phishguard/dashboard/ |
-| **Username** | `admin` |
-| **Password** | `admin123` |
+- **URL:** http://localhost/phishguard/dashboard/
+- **Username:** `admin`
+- **Password:** `admin123`
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐         ┌─────────────────┐
@@ -203,7 +176,7 @@ UPDATE admins SET password = '<paste-hash-here>' WHERE username = 'admin';
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |:------:|----------|-------------|
@@ -213,7 +186,7 @@ UPDATE admins SET password = '<paste-hash-here>' WHERE username = 'admin';
 | `POST` | `/backend/login.php` | Admin authentication |
 
 <details>
-<summary><b>📥 Example: save a scan</b> (click to expand)</summary>
+<summary><b>Example: save a scan</b> (click to expand)</summary>
 
 **Request:**
 ```bash
@@ -238,7 +211,7 @@ curl -X POST http://localhost/phishguard/backend/scan.php \
 
 ---
 
-## 🧠 Detection Rules
+## Detection Rules
 
 | # | Rule | Weight | What it catches |
 |:-:|------|:------:|-----------------|
@@ -254,44 +227,44 @@ curl -X POST http://localhost/phishguard/backend/scan.php \
 | 10 | Very long URL (>75 chars) | +10 | Obfuscated URLs |
 | 11 | HTML file in path | +10 | `.html` / `.php` in suspicious domains |
 
-> **Score is capped at 100.** Whitelisted domains always return **0**.
+Score is capped at 100. Whitelisted domains always return 0.
 
 ---
 
-## 🧪 Test URLs
+## Test URLs
 
 | URL | Score | Level | Reason |
 |-----|:-----:|:-----:|--------|
-| `https://google.com` | 0 | 🟢 | Whitelisted |
-| `https://tiktok.com/login` | 0 | 🟢 | Whitelisted |
-| `http://neverssl.com` | 30 | 🟠 | No HTTPS |
-| `http://192.168.1.1/login.htm` | 100 | 🔴 | IP + No HTTPS + keyword |
-| `https://xxx.trycloudflare.com/login.html` | 85 | 🔴 | Tunnel + keyword + .html |
+| `https://google.com` | 0 | Low | Whitelisted |
+| `https://tiktok.com/login` | 0 | Low | Whitelisted |
+| `http://neverssl.com` | 30 | Medium | No HTTPS |
+| `http://192.168.1.1/login.htm` | 100 | High | IP + No HTTPS + keyword |
+| `https://xxx.trycloudflare.com/login.html` | 85 | High | Tunnel + keyword + .html |
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 phishguard/
-├── 📁 backend/             PHP REST API
+├── backend/             PHP REST API
 │   ├── config.example.php
 │   ├── login.php
 │   ├── scan.php
 │   ├── scans.php
 │   └── stats.php
-├── 📁 dashboard/           Admin panel
+├── dashboard/           Admin panel
 │   ├── dashboard.php
 │   ├── export.php
 │   ├── index.php
 │   ├── logout.php
 │   └── style.css
-├── 📁 database/
+├── database/
 │   └── phishguard.sql
-├── 📁 docs/
-│   └── 📁 screenshots/
-├── 📁 extension/           Chrome/Brave extension
-│   ├── 📁 icons/
+├── docs/
+│   └── screenshots/
+├── extension/           Chrome/Brave extension
+│   ├── icons/
 │   ├── analyzer.js
 │   ├── background.js
 │   ├── manifest.json
@@ -306,20 +279,20 @@ phishguard/
 
 ---
 
-## 🔒 Security
+## Security
 
 | Protection | Implementation |
 |------------|----------------|
-| **SQL Injection** | PDO prepared statements |
-| **XSS** | `htmlspecialchars()` on output |
-| **Password Storage** | `password_hash()` with bcrypt |
-| **Input Validation** | `filter_var($url, FILTER_VALIDATE_URL)` |
-| **CORS** | Restricted to `localhost` in dev |
-| **Config Separation** | `config.php` excluded via `.gitignore` |
+| SQL Injection | PDO prepared statements |
+| XSS | `htmlspecialchars()` on output |
+| Password Storage | `password_hash()` with bcrypt |
+| Input Validation | `filter_var($url, FILTER_VALIDATE_URL)` |
+| CORS | Restricted to `localhost` in dev |
+| Config Separation | `config.php` excluded via `.gitignore` |
 
 ---
 
-## 🛣️ Roadmap
+## Roadmap
 
 - [x] **v1.0** — Rule-based detection + dashboard
 - [ ] **v1.1** — Google Safe Browsing API integration
@@ -329,7 +302,7 @@ phishguard/
 
 ---
 
-## 🧑‍💻 Technologies
+## Technologies
 
 <table>
 <tr>
@@ -362,22 +335,22 @@ phishguard/
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
-This tool is intended for **educational and authorized security testing only**. Phishing simulation tools used during development (such as Zphisher) run strictly in isolated lab environments. **Do not** use this project to conduct unauthorized attacks.
+This tool is intended for educational and authorized security testing only. Phishing simulation tools used during development (such as Zphisher) run strictly in isolated lab environments. Do not use this project to conduct unauthorized attacks.
 
 ---
 
-## 📄 License
+## License
 
-This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
 <div align="center">
 
-### ⭐ If you find this project useful, please give it a star!
+### If you find this project useful, please give it a star.
 
-**Built with 🛡️ by [@aminearea](https://github.com/aminearea)**
+**Built by [@aminearea](https://github.com/aminearea)**
 
 </div>
