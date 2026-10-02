@@ -4,7 +4,7 @@
 
 # PhishGuard
 
-**Real-time phishing detection for Chrome and Brave.**
+**Real-time phishing detection for Chrome .**
 
 Analyzes every URL you visit, scores it 0–100, and warns you before you enter data on a phishing page.
 
